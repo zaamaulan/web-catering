@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "dev": "npx tailwindcss -i ./src/styles/global.css -o ./src/styles/style.css --watch"
+    "dev": "npx tailwindcss -i ./src/pages/styles/global.css -o ./src/pages/styles/style.css --watch"
   },
   "keywords": [],
   "author": "",
@@ -72,7 +72,6 @@
     "resolve": "^1.22.2",
     "reusify": "^1.0.4",
     "run-parallel": "^1.2.0",
-    "serve": "^14.2.0",
     "source-map-js": "^1.0.2",
     "sucrase": "^3.32.0",
     "supports-preserve-symlinks-flag": "^1.0.0",
