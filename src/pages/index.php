@@ -3,7 +3,7 @@
 session_start();
 function verifyLogin($route)
 {
-  $routeName = ['dashboard/', 'saved/', 'menu/', 'koupon/', 'testimoni/'];
+  $routeName = ['dashboard/', 'menu/', 'koupon/', 'testimoni/'];
   if (!isset($_SESSION['login'])) {
     return '../auth/login.php';
   } else if (isset($_SESSION['login']) && in_array($route, $routeName)) {
@@ -29,6 +29,7 @@ if (!isset($_SESSION['login'])) {
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Dashboard | YumYumExpress</title>
   <link rel="stylesheet" href="styles/style.css" />
+  <script src="js/Popup.js"></script>
 </head>
 
 <body class="m-0 p-0">
@@ -43,44 +44,38 @@ if (!isset($_SESSION['login'])) {
       </div>
       <div class="flex flex-col justify-between h-[90%]">
         <div class="">
-          <div class="flex justify-center mb-16 mt-24">
-            <a href="dashboard/">
+          <div class="flex justify-center mb-16 hover:scale-[1.125] transition mt-24">
+            <a href="">
               <img src="assets/icons/homeFillIcon.png" alt="home" width="28px" />
             </a>
           </div>
 
-          <div class="flex justify-center mb-16 ">
-            <a href="<?= verifyLogin('saved/') ?>">
-              <img src="assets/icons/saveIcon.png" alt="grid" width="20px" />
-            </a>
-          </div>
-
-          <div class="flex justify-center mb-16 ">
+          <div class="flex justify-center mb-16 hover:scale-[1.125] transition ">
             <a href="<?= verifyLogin('menu/') ?>">
               <img src="assets/icons/gridIcon.png" alt="grid" width="24px" />
             </a>
           </div>
 
-          <div class="flex justify-center mb-16  ">
+          <div class="flex justify-center mb-16 hover:scale-[1.125] transition  ">
             <a href="<?= verifyLogin('testimoni/') ?>">
               <img src="assets/icons/commentIcon.png" alt="comment" width="24px" />
             </a>
           </div>
 
-          <div class="flex justify-center mb-16 ">
+          <div class="flex justify-center mb-16 hover:scale-[1.125] transition ">
             <a href="<?= verifyLogin('koupon/') ?>">
               <img src="assets/icons/ticketIcon.png" alt="ticket" width="28px" />
             </a>
           </div>
         </div>
         <div class="<?= $afterLogin ?>">
-          <div class="flex justify-center mb-16  ">
+          <div class="flex justify-center mb-16 hover:scale-[1.125] transition  ">
             <a href="user/">
               <img src="assets/icons/userIcon.png" alt="user" width="24px" />
             </a>
           </div>
 
-          <div class="flex justify-center  ">
+          <div class="flex justify-center">
             <a href="api/logout.php">
               <img src="assets/icons/logoutIcon.png" alt="logout" width="26px" />
             </a>
@@ -116,9 +111,9 @@ if (!isset($_SESSION['login'])) {
                 Log In
               </button>
             </a>
-            <a href="../auth/sign-in/">
+            <a href="../auth/sign-up/">
               <button class="border-2 border-[#FC7F27] text-[#FC7F27] font-extrabold px-8 py-3 text-xl rounded-xl ">
-                Sign In
+                Sign Up
               </button>
             </a>
           </div>
@@ -130,12 +125,19 @@ if (!isset($_SESSION['login'])) {
             </a>
           </div>
         </div>
-        <div class="my-auto">
-          <img src="assets/images/dashboard.jpg" alt="" width="" class="h-[100vh]" />
+        <div class="my-auto mr-6">
+          <img src="assets/images/dashboard.jpg" alt="" width="" class="h-[60rem] rounded-tl-[4rem] rounded-bl-[4rem]" />
         </div>
       </div>
     </main>
     <!-- CONTENT -->
+    <div id="popup" class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white px-20 py-12 border border-gray-100 rounded-md shadow-lg hidden text-center font-nunito">
+      <h2 class="font-bold text-4xl mb-5">Log Out?</h2>
+      <div class="flex justify-between">
+        <a href="" class="font-bold text-xl hover:text-green-500 transition ease-in-out duration-200">Tidak</a>
+        <a href="api/logout.php" class="font-bold text-xl hover:text-red-500 transition ease-in-out duration-200">Ya</a>
+      </div>
+    </div>
   </div>
 </body>
 

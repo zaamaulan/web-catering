@@ -1,11 +1,11 @@
 <?php
 
-include 'index.php';
 
+include 'index.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-   $errorEmail = $errorUsername = $errorUSername = '';
+   $errorEmail = $errorUsername = '';
 
    if (isset($_POST['email']) && isset($_POST['password']) && isset($_POST['username'])) {
       $email = $_POST['email'];
@@ -20,14 +20,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
    $result = $conn->query($sql);
 
    if ($result->num_rows > 0) {
-      if (empty($errorUsername) && empty($errorEmail)) {
-         $errorEmail = 'Email sudah ada';
-         $errorUsername = 'Username sudah ada';
-      }
+      $errorEmail = 'Email sudah terdaftar';
+      $errorUsername = 'Username sudah ada';
    } else {
       $insert = "INSERT INTO users (username, email, password) VALUES ('$username', '$email', '$password')";
       mysqli_query($conn, $insert);
-      header('location: ../login.php');
+      header('location: ../../auth/login.php');
    }
    $conn->close();
 }

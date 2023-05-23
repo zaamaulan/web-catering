@@ -1,4 +1,6 @@
 <?php
+include '../api/search.php';
+
 session_start();
 if (!isset($_SESSION['login'])) {
   header('location: ../index.php');
@@ -28,38 +30,32 @@ if (!isset($_SESSION['login'])) {
       </div>
       <div class="flex flex-col justify-between h-[90%]">
         <div class="">
-          <div class="flex justify-center mb-16 mt-24">
+          <div class="flex justify-center mb-16 hover:scale-[1.125] transition mt-24">
             <a href="../">
               <img src="../assets/icons/homeIcon.png" alt="home" width="28px" />
             </a>
           </div>
 
-          <div class="flex justify-center mb-16 ">
-            <a href="../saved/">
-              <img src="../assets/icons/saveIcon.png" alt="grid" width="20px" height="31px" />
-            </a>
-          </div>
-
-          <div class="flex justify-center mb-16 ">
+          <div class="flex justify-center mb-16 hover:scale-[1.125] transition ">
             <a href="../menu/">
               <img src="../assets/icons/gridIcon.png" alt="grid" width="24px" />
             </a>
           </div>
 
-          <div class="flex justify-center mb-16  ">
+          <div class="flex justify-center mb-16 hover:scale-[1.125] transition  ">
             <a href="../testimoni/">
               <img src="../assets/icons/commentIcon.png" alt="comment" width="24px" />
             </a>
           </div>
 
-          <div class="flex justify-center mb-16 ">
+          <div class="flex justify-center mb-16 hover:scale-[1.125] transition ">
             <a href="../koupon/">
               <img src="../assets/icons/ticketFillIcon.png" alt="ticket" width="28px" />
             </a>
           </div>
         </div>
         <div class="">
-        <div class="flex justify-center mb-16  ">
+          <div class="flex justify-center mb-16 hover:scale-[1.125] transition  ">
             <a href="../user/">
               <img src="../assets/icons/userIcon.png" alt="user" width="24px" />
             </a>

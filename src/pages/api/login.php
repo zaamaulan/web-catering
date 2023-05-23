@@ -1,11 +1,12 @@
 <?php
 
-include 'index.php';
+session_start();
 
+include 'index.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-  if (isset($_POST['email'], $_POST['password'])) {
+  if (isset($_POST['email']) && isset($_POST['password'])) {
     $email = $_POST['email'];
     $password = md5($_POST['password']);
   } else {
@@ -19,11 +20,21 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   if ($result->num_rows > 0) {
     while ($row = mysqli_fetch_assoc($result)) {
       $_SESSION['username'] = $row['username'];
+      $_SESSION['bergabung'] = $row['bergabung'];
+      $_SESSION['email'] = $email;
+      $_SESSION['login'] = true;
+
+      if ($row['role'] == 'admin') {
+        header('location: ../pages/admin/');
+        exit();
+      } else {
+        header('location: ../pages/');
+        exit();
+      }
     }
-    session_start();
-    $_SESSION['email'] = $email;
-    $_SESSION['login'] = true;
-    header('location: ../pages/');
+  } else {
+    $error =  "Invalid email or password";
   }
+
   $conn->close();
 }
